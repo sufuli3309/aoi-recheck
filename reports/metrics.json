@@ -1,0 +1,33 @@
+{
+  "n_test": 438,
+  "n_true_ng": 146,
+  "n_pseudo_ng": 292,
+  "pos_ratio": 0.3333,
+  "auc": 0.963,
+  "average_precision": 0.9472,
+  "cost_model": {
+    "c_fn": 10.0,
+    "c_fp": 1.0
+  },
+  "best_threshold": 0.1309,
+  "at_best_threshold": {
+    "threshold": 0.1309,
+    "fn": 1,
+    "fp": 119,
+    "fnr": 0.0068,
+    "fpr": 0.4075,
+    "cost": 0.8836
+  },
+  "at_threshold_0.5": {
+    "threshold": 0.5,
+    "fn": 14,
+    "fp": 40,
+    "fnr": 0.0959,
+    "fpr": 0.137,
+    "cost": 1.2329
+  },
+  "baseline_all_pseudo": {
+    "accuracy": 0.6667,
+    "fnr": 1.0
+  }
+}

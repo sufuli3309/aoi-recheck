@@ -1,0 +1,28 @@
+seed: 42
+
+data:
+  root: data/processed      # train/val/test 下按 true_ng / pseudo_ng 分子目录
+  imgsz: 320                # 300x300 原图，320 足够且 CPU 友好
+  workers: 4
+
+model:
+  weights: yolov8n-cls.pt   # 首次运行会自动下载；离线可置为 null 从头训
+  epochs: 30
+  batch: 32
+  lr0: 0.001
+  patience: 8
+  device: cpu
+  project: runs
+  name: aoi_recheck
+
+# 代价模型：漏检一个真缺陷 vs 多派一次人工复核
+# 产线上缺陷件流出要返工甚至索赔，量级差 10 倍是保守估计
+cost:
+  c_fn: 10.0
+  c_fp: 1.0
+
+serve:
+  ckpt: runs/aoi_recheck/weights/best.pt
+  # 取值来自 evaluate.py 的代价最优解（C_fn=10, C_fp=1）。
+  # 改这里等于改"宁可漏检还是宁可多派人复核"，是业务决策不是超参。
+  threshold: 0.13
